@@ -1,22 +1,99 @@
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const [position, setPosition] = useState({
+    left: 60,
+    width: 150,
+    opacity: 1,
+  });
+
   return (
-    <div className="fixed  custom-shadow  top-8 z-50 h-[7vh] w-[35%] left-[50%] translate-x-[-50%] bg-gradient-to-r from-white/20 to-white/20 backdrop-blur-lg px-7 py-5 rounded-full">
-      <div className="flex text-black justify-evenly items-center h-[100%] py-1 text-lg">
-        <div className="bg-black px-5 py-2 text-[0.9rem] rounded-full uppercase text-white cursor-pointer">
-          <h1 className="mix-blend-exclusion">Home</h1>
-        </div>
-        <div className=" px-5 py-2 text-[0.9rem] mix-blend-exclusion rounded-full uppercase text-white cursor-pointer">
+    <div className="fixed custom-shadow top-8 z-50 h-[7vh] w-[35%] left-[50%] translate-x-[-50%] bg-gradient-to-r from-white/70 to-white/70 backdrop-blur-lg px-7 py-5 rounded-full">
+      <div className="flex relative justify-evenly text-black items-center h-[100%] py-1 text-lg">
+        <Tab pathname={"/"} setPosition={setPosition}>
+          Home
+        </Tab>
+        <Tab pathname={"/career"} setPosition={setPosition}>
           Career
-        </div>
-        <div className=" px-5 py-2 text-[0.9rem] mix-blend-exclusion rounded-full uppercase text-white cursor-pointer">
+        </Tab>
+        <Tab pathname={"/contact"} setPosition={setPosition}>
           Contact Us
-        </div>
-        <div className=" px-5 py-2 text-[0.9rem] mix-blend-exclusion rounded-full uppercase text-white cursor-pointer">
+        </Tab>
+        <Tab pathname={"/support"} setPosition={setPosition}>
           Support
-        </div>
+        </Tab>
+        <Cursor position={position} />
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
+const Tab = ({
+  pathname,
+  children,
+  setPosition,
+}: {
+  pathname: string;
+  children: React.ReactNode;
+  setPosition: React.Dispatch<
+    React.SetStateAction<{
+      left: number;
+      width: number;
+      opacity: number;
+    }>
+  >;
+}) => {
+  const ref = useRef(null);
+
+  const location = useLocation();
+
+  const changePillPosition = () => {
+    if (!ref.current) return;
+
+    const { width } = ref.current.getBoundingClientRect();
+    setPosition({
+      left: ref.current.offsetLeft,
+      width,
+      opacity: 1,
+    });
+  };
+
+  useEffect(() => {
+    if (location.pathname === pathname && ref.current) {
+      changePillPosition();
+    }
+  }, [ref, location]);
+
+  const navigate = useNavigate();
+
+  return (
+    <li
+      ref={ref}
+      className="relative flex-shrink-0 z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
+      onClick={() => navigate(`${pathname}`)}
+    >
+      {children}
+    </li>
+  );
+};
+
+const Cursor = ({
+  position,
+}: {
+  position: {
+    left: number;
+    width: number;
+    opacity: number;
+  };
+}) => {
+  return (
+    <motion.div
+      animate={position}
+      className="absolute z-0 h-7 w-36 rounded-full bg-black md:h-12"
+    />
+  );
+};
