@@ -11,7 +11,9 @@ body {
 }
 
 .custom-shadow {
-  /* box-shadow: 0em 0.5em 1em -0.5em rgba(5, 7, 15, 0.2); */
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.custom-transition {
+  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
