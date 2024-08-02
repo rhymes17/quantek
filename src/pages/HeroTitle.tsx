@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
+import Eth from "../assets/images/eth.jpg";
 
 const HeroTitle = () => {
   const { scrollY } = useScroll();
@@ -30,7 +31,7 @@ const HeroTitle = () => {
         }}
         className="flex bg-[#e8f0f9] rounded-[3.5rem] px-8 py-16"
       >
-        <div className="flex w-[60%] flex-col gap-5 px-7 py-5 rounded-3xl">
+        <div className="flex w-[60%] flex-col gap-8 px-7 py-5 rounded-3xl">
           <h1 className="text-black text-[5rem] font-[500] leading-tight">
             Custom Software Development Services
           </h1>
@@ -41,7 +42,12 @@ const HeroTitle = () => {
           </h3>
         </div>
 
-        <div className="flex-1"></div>
+        <div className="relative h-[50vh] flex-1 flex justify-end px-8 items-center">
+          <img className="h-[100%] rounded-2xl" src={Eth} />
+          {/* <div className=" absolute bottom-[-25px] left-[35px] h-[7vh] w-[12vw] p-2 rounded-2xl flex justify-center items-center text-white font-[500] bg-gradient-to-r from-black/20 to-black/20 backdrop-blur-sm">
+            Come Join Us
+          </div> */}
+        </div>
       </motion.div>
     </motion.div>
   );
