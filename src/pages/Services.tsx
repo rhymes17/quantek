@@ -92,7 +92,7 @@ const Services = () => {
     >
       <div className="py-5 relative">
         {services.map((service) => (
-          <Service service={service} setModal={setModal} />
+          <Service key={service.index} service={service} setModal={setModal} />
         ))}
         <Modal modal={modal} services={services} />
       </div>

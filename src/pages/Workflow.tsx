@@ -6,7 +6,7 @@ import DevOpsImg from "../assets/images/features-split-image-02.3c569239.png";
 import LeanImg from "../assets/images/features-split-image-03.87e4d053.png";
 import WorkflowCard from "./WorkflowCard";
 
-const colors = ["white", "yellow", "cyan"];
+// const colors = ["#91DDCF", "#FFD3B6", "#DCA47C"];
 
 const workflows = [
   {
@@ -32,8 +32,6 @@ const workflows = [
 const Workflow = () => {
   const [imageId, setImageId] = useState(-1);
 
-  console.log({ imageId });
-
   return (
     <SectionLayout
       title="Workflow that just works"
@@ -42,7 +40,6 @@ const Workflow = () => {
       <div
         className="flex items-start px-16 gap-20 "
         style={{
-          backgroundColor: colors[imageId],
           transition: "all 0.5s cubic-bezier(0.8, 0, 0.42, 1)",
         }}
       >
@@ -64,6 +61,7 @@ const Workflow = () => {
           <div className="w-full relative">
             {workflows.map((workflow, index) => (
               <WorkflowCard
+                key={index}
                 img={workflow.img}
                 index={index}
                 imageId={imageId}

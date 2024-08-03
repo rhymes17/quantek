@@ -1,19 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect } from "react";
 import Eth from "../assets/images/eth.jpg";
 
 const HeroTitle = () => {
   const { scrollY } = useScroll();
 
-  useEffect(() => {
-    console.log({ scrollY });
-  }, [scrollY]);
-
   const borderRadius = useTransform(scrollY, [500, 900], ["0rem", "3.5rem"]);
   const paddingX = useTransform(scrollY, [500, 900], ["0rem", "4rem"]);
-
-  console.log({ borderRadius, scrollY });
-
+  
   return (
     <motion.div
       style={{
