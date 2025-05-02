@@ -1,44 +1,166 @@
-import { motion, useScroll } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+
+import FetchLogo from "../assets/images/plexus_logo.3787b2b7.png";
+import PlexusLogo from "../assets/images/plexus_logo.3787b2b7.png";
+import XneeloLogo from "../assets/images/xneelo_banner.94b59c36.png";
 
 const Clients = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    container: ref,
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("Page scroll progress: ", latest);
   });
 
-  console.log({ scrollYProgress });
+  const translateY = useTransform(scrollY, [0, 17500], ["0%", "-500%"]);
+  const translateYRev = useTransform(scrollY, [0, 17500], ["-500%", "0%"]);
+
+  const length = 50;
 
   return (
     <div className="bg-black">
-      <motion.div ref={ref} className="h-[80vh] overflow-y-scroll">
-        <motion.div className="h-[200vh]">
-          <div className="sticky top-0 h-[80vh] mx-auto flex justify-center items-center">
-            <div className="sticky h-[100%] w-[100%] px-8 rounded-3xl flex justify-center items-center">
-              <motion.div className="flex bg-[#e8f0f9] rounded-[3.5rem] h-[70vh]">
-                <div className="flex w-[60%] h-[full] justify-center flex-col gap-8 px-7 py-5 rounded-3xl">
-                  <h1 className="text-black text-[5rem] font-[500] leading-tight">
-                    Custom Software Development Services
-                  </h1>
+      <div className=" h-[90vh] mx-auto flex justify-center items-center">
+        <div className="sticky h-[100%] w-[100%] px-8 rounded-3xl flex justify-center items-center">
+          <div className="flex bg-[#e8f0f9] w-full rounded-[3.5rem] h-[90vh] items-center">
+            <div className="flex w-full h-full justify-start flex-col gap-8 px-8 py-5 rounded-3xl">
+              <h1 className="text-black text-[5rem] font-[500] leading-tight">
+                Our Clients
+              </h1>
+            </div>
 
-                  <h3 className="text-[1.3rem] text-black/60 ">
-                    We perform world-class custom software development services
-                    for startups, small-to-midsize (SMB), and enterprise-size
-                    businesses.
-                  </h3>
-                </div>
+            <div className="w-[70%] h-full flex items-center justify-center overflow-hidden">
+              <div className="h-[90%] w-[90%] rounded-[1.5rem] mx-auto bg-[#21242c]  overflow-hidden">
+                <div className="h-full w-[120%] flex gap-24 items-center justify-center overflow-hidden">
+                  <div
+                    style={{
+                      transform: "rotate(-30deg)",
+                    }}
+                    className="h-[150%] w-full overflow-hidden flex flex-col items-center "
+                  >
+                    <motion.div
+                      style={{
+                        translateY: translateY,
+                      }}
+                      className="h-full w-full flex flex-col items-center gap-8 "
+                    >
+                      {Array.from({ length }).map((_, index) => (
+                        <div className="flex flex-col gap-8">
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={FetchLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={PlexusLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="h-full"
+                              src={XneeloLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
 
-                <div className="relative h-[50vh] flex-1 flex justify-end border-2 px-8 items-center">
-                  {/* <img className="h-[100%] rounded-2xl" src={Eth} /> */}
-                  {/* <div className=" absolute bottom-[-25px] left-[35px] h-[7vh] w-[12vw] p-2 rounded-2xl flex justify-center items-center text-white font-[500] bg-gradient-to-r from-black/20 to-black/20 backdrop-blur-sm">
-            Come Join Us
-          </div> */}
+                  {/* Main  */}
+                  <div
+                    style={{
+                      transform: "rotate(-30deg)",
+                    }}
+                    className="h-[150%] w-full overflow-hidden flex flex-col items-center "
+                  >
+                    <motion.div
+                      style={{
+                        translateY: translateYRev,
+                      }}
+                      className="h-full w-full flex flex-col items-center gap-8 "
+                    >
+                      {Array.from({ length }).map((_, index) => (
+                        <div className="flex flex-col gap-8">
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={FetchLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={PlexusLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="h-full"
+                              src={XneeloLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
+
+                  <div
+                    style={{
+                      transform: "rotate(-30deg)",
+                    }}
+                    className="h-[150%] w-full overflow-hidden flex flex-col items-center "
+                  >
+                    <motion.div
+                      style={{
+                        translateY: translateY,
+                      }}
+                      className="h-full w-full flex flex-col items-center gap-8 "
+                    >
+                      {Array.from({ length }).map((_, index) => (
+                        <div className="flex flex-col gap-8">
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={FetchLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="w-[9rem] object-contain"
+                              src={PlexusLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                          <div key={index}>
+                            <img
+                              className="h-full"
+                              src={XneeloLogo}
+                              alt={`icon-${index}`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       <div className="h-[200vh]"></div>
     </div>

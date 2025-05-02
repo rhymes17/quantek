@@ -50,7 +50,7 @@ const Service = ({
             x: "-22.45%",
           }}
           transition={{
-            duration: 2,
+            duration: 5,
             repeat: Infinity,
             ease: "linear",
           }}
